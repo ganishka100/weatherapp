@@ -38,7 +38,7 @@ function WeatherApp() {
 
   useEffect(() => {
     fetchApi();
-  },[]);
+  },[search]);
 
   return (
     <>
