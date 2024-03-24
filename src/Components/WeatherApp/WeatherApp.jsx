@@ -6,6 +6,14 @@ import clear_icon from '../Assets/clear.png';
 import drizzle_icon from '../Assets/drizzle.png';
 import rain_icon from '../Assets/rain.png';
 import snow_icon from '../Assets/snow.png';
+import few_cloudsday_icon from '../Assets/few_clouds(02d).png';
+import few_cloudsnight_icon from '../Assets/(02n).png';
+import clouds_03d_03n from '../Assets/clouds(03d and 03n).png';
+import scattered_clouds from '../Assets/scattered_clouds(04d_04n).png';
+import rain_night from '../Assets/010n.png';
+import shower_rain from '../Assets/shower_rain(09d_09n).png';
+import thunderstorm from '../Assets/thunderstorm(011d_011n).png';
+import night_icon from '../Assets/night.png';
 import './WeatherApp.css';
 
 function WeatherApp() {
@@ -22,17 +30,42 @@ function WeatherApp() {
 
     if (data.weather && data.weather[0] && data.weather[0].icon) {
       const iconCode = data.weather[0].icon;
-      if (iconCode === "01d" || iconCode === "01n") {
+      if (iconCode === "01d") {
         setWicon(clear_icon);
-      } else if (iconCode === "02d" || iconCode === "02n" || iconCode === "03d" || iconCode === "03n" || iconCode === "04d" || iconCode === "04n") {
-        setWicon(cloud_icon);
-      } else if (iconCode === "09d" || iconCode === "09n" || iconCode === "10d" || iconCode === "10n") {
-        setWicon(rain_icon);
-      } else if (iconCode === "13d" || iconCode === "13n") {
-        setWicon(snow_icon);
-      } else {
-        setWicon(drizzle_icon);
       }
+      else if(iconCode === "01n"){        
+        setWicon(night_icon);
+      }
+      else if(iconCode === "02d"){        
+        setWicon(few_cloudsday_icon);
+      }
+      else if(iconCode === "02n"){        
+        setWicon(few_cloudsnight_icon);
+      }
+      else if(iconCode === "03d" || iconCode === "03n"){        
+        setWicon(clouds_03d_03n);
+      }
+      else if(iconCode === "04d" || iconCode === "04n"){        
+        setWicon(scattered_clouds);
+      }
+      else if(iconCode === "09d" || iconCode === "09n"){        
+        setWicon(shower_rain);
+      }
+      else if(iconCode === "010d"){        
+        setWicon(rain_icon);
+      }
+      else if(iconCode === "010n"){        
+        setWicon(rain_night);
+      }
+      else if (iconCode === "11d" || iconCode === "11n") {
+        setWicon(thunderstorm);
+      }
+      else if (iconCode === "13d" || iconCode === "13n") {
+           setWicon(snow_icon);
+      }
+      else {
+           setWicon(drizzle_icon);
+       }
     }
   };
 
@@ -43,6 +76,8 @@ function WeatherApp() {
   return (
     <>
       <div className="container">
+        <div className="row text-md-center text-center-0">
+          <div className="col-12">
         <div className="top-bar">
           <input type="text" className='cityInput' autoFocus value={search} placeholder='Search' onChange={(event) => {
             setSearch(event.target.value);
@@ -78,6 +113,8 @@ function WeatherApp() {
             </div>
           </>
         )}
+        </div>
+        </div>
       </div>
     </>
   )
